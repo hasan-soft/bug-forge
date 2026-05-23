@@ -23,7 +23,12 @@ const createUserIntoDB = async (payload: TUserSignup) => {
   const result = await pool.query(query, values);
   return result;
 };
-
+const loginUserFromDB = async (email: string) => {
+  const query = `SELECT * FROM users WHERE email = $1;`;
+  const result = await pool.query(query, [email]);
+  return result;
+};
 export const userService = {
   createUserIntoDB,
+  loginUserFromDB,
 };
