@@ -1,22 +1,16 @@
+
+
 export type AuthUser = {
   id: number;
   name: string;
   role: "maintainer" | "contributor";
 };
 
-export type User = {
-  id: number;
-  name: string;
-  role: string;
-  iat: number;
-  exp: number;
-};
-
 export type CreateUserPayload = {
   name: string;
   email: string;
   password: string;
-  role: string;
+  role?: "contributor" | "maintainer";
 };
 
 export type LoginPayload = {
@@ -24,24 +18,53 @@ export type LoginPayload = {
   password: string;
 };
 
+
+
+export type IssueType = "bug" | "feature_request";
+export type IssueStatus = "open" | "in_progress" | "resolved";
+
 export type CreateIssuePayload = {
   title: string;
   description: string;
-  type: string;
-  status: string;
+  type: IssueType;
 };
 
-export type UpdatePaylaod = {
-  title: string;
-  description: string;
-  type: string;
+export type UpdateIssuePayload = {
+  title?: string | undefined;
+  description?: string | undefined;
+  type?: IssueType | undefined;
 };
 
 export type IssueQuery = {
-  sort?: "newest" | "oldest";
-  type?: "bug" | "feature_request";
-  status?: "open" | "in_progress" | "resolved";
+  sort?: "newest" | "oldest" | undefined;
+  type?: IssueType | undefined;
+  status?: IssueStatus | undefined;
 };
+
+
+
+export type UserRow = {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  role: "contributor" | "maintainer";
+  created_at: string;
+  updated_at: string;
+};
+
+export type IssueRow = {
+  id: number;
+  title: string;
+  description: string;
+  type: IssueType;
+  status: IssueStatus;
+  reporter_id: number;
+  created_at: string;
+  updated_at: string;
+};
+
+
 
 declare global {
   namespace Express {
@@ -50,6 +73,8 @@ declare global {
     }
   }
 }
+
+
 
 export class AppError extends Error {
   statusCode: number;
