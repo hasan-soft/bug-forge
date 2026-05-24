@@ -2,7 +2,7 @@
 
 Bug Forge is a backend API for software teams to track bugs and feature requests. Built with Node.js, TypeScript, and PostgreSQL.
 
-**Live URL:** 
+**Live URL:  https://bug-forge.vercel.app/
 
 ---
 
