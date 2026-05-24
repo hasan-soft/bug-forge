@@ -13,10 +13,6 @@ app.use(
     origin: "*",
   }),
 );
-app.use((req, res, next) => {
-  console.log("HIT:", req.method, req.url);
-  next();
-});
 app.use(express.json());
 app.use("/api", globalRouter);
 app.get("/", (req: Request, res: Response) => {

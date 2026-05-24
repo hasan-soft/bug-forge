@@ -11,7 +11,7 @@ export const pool = new Pool({
 export const initDB = async () => {
   try {
     await pool.query("SELECT NOW()");
-    console.log("Database connection established successfully.");
+    console.log("Database connection successfully.");
 
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (

@@ -25,12 +25,13 @@ export const attachReporters = async (issues: IssueRow[]) => {
   const reporters = await getReportersByIds(uniqueIds);
   const reporterMap = new Map(reporters.map((r) => [r.id, r]));
 
-  return issues.map(({ reporter_id, ...rest }) => ({
+  return issues.map(({ reporter_id, created_at, updated_at, ...rest }) => ({
     ...rest,
     reporter: reporterMap.get(reporter_id) ?? null,
+    created_at,
+    updated_at,
   }));
 };
-
 // ─── CRUD 
 
 const createIssue = async (
